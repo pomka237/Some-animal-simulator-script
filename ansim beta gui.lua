@@ -36,7 +36,7 @@ Section:NewTextBox("Radio Music", "TextboxInfo", function(radioid)
 local Event = game:GetService("Workspace")["DRadio_Script"].Event
 Event:FireServer(anrad)
 end)
-Section2:NewDropdown("Tp to some place", "DropdownInf", {"Spawn", "Lion Base up", "Lion Base", "Barn", "Wooden Village", "Wooden Village2", "Skull"}, function(placetp)
+Section2:NewDropdown("Tp to some place", "DropdownInf", {"Spawn", "Lion Base up", "Lion Base", "Barn", "Wooden Village", "Wooden Village2", "Skull", "5k+DummyFarm"}, function(placetp)
     if placetp == "Spawn" then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").SpawnPoints.spawnPoint.CFrame
     elseif placetp == "Lion Base" then
@@ -51,7 +51,9 @@ Section2:NewDropdown("Tp to some place", "DropdownInf", {"Spawn", "Lion Base up"
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1203.63354, -90.3156509, 953.048157, 0.126293376, -1.29047772e-10, -0.99199295, 2.62288893e-08, 1, 3.20918336e-09, 0.99199295, -2.64241713e-08, 0.126293376)
     elseif placetp == "Skull" then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-448.156677, -45.9675636, 1228.43848, 0.346850455, -9.98767788e-08, -0.937920451, 5.4451359e-09, 1, -1.0447382e-07, 0.937920451, 3.11296873e-08, 0.346850455)
-    end
+    elseif placetp == "5k+DummyFarm" then
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1070.18616, -150.246094, -11.5510368, -0.998719573, -9.45147534e-08, -0.0505883619, -9.2055771e-08, 1, -5.09376186e-08, 0.0505883619, -4.62154475e-08, -0.998719573)
+	end
 end)
 Section5:NewButton("DragChat", "ButtonInfo", function()
     loadstring(game:HttpGet(('https://pastebin.com/raw/svqRbx2n'),true))()
