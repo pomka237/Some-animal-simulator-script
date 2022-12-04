@@ -1,5 +1,5 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Robojini/Tuturial_UI_Library/main/UI_Template_1"))()
-local Window = Library.CreateLib("Some script for Animal Simulator", "RJTheme3")
+local Window = Library.CreateLib("Animal Simulator script v0", "RJTheme3")
 local Main = Window:NewTab("Main")
 local LocalPlayer = Window:NewTab("Local Player")
 local Misc = Window:NewTab("Misc")
