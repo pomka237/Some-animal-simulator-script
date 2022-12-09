@@ -1,16 +1,21 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Robojini/Tuturial_UI_Library/main/UI_Template_1"))()
-local Window = Library.CreateLib("Animal Simulator script v Beta", "RJTheme3")
-local Main = Window:NewTab("Main")
-local LocalPlayer = Window:NewTab("Local Player")
-local Misc = Window:NewTab("Misc")
-local Credits = Window:NewTab("Credits")
-local Section = Main:NewSection("Animal Simulator")
-local Section2 = Main:NewSection("Tp to some places")
-local Section3 = Credits:NewSection("Dev: TS_Doomed(POMKA237 :sunglasses:)")
-local Section4 = Credits:NewSection("Noob who help me: TS_DEATH(R0BL0XX1X2)")
-local Section5 = Misc:NewSection("Misc")
-local Section6 = LocalPlayer:NewSection("Movement")
-Section:NewButton("Free Fireball", "ButtonInfo", function()
+local qe = loadstring(game:HttpGet("https://raw.githubusercontent.com/Robojini/Tuturial_UI_Library/main/UI_Template_1"))()
+local Window = qe.CreateLib("Animal Simulator script v Beta", "RJTheme1")
+local w1 = Window:NewTab("Main")
+local w2 = Window:NewTab("Local Player")
+local w3 = Window:NewTab("Misc")
+local w4 = Window:NewTab("Credits")
+local s1 = w1:NewSection("Animal Simulator")
+local s2 = w1:NewSection("Tp to some places")
+local s3 = w4:NewSection("Dev: TS_Doomed(POMKA237 :sunglasses:)")
+local s4 = w4:NewSection("Noob who help me: TS_DEATH(R0BL0XX1X2)")
+local s5 = w3:NewSection("Misc")
+local s6 = w2:NewSection("Movement")
+
+s1:NewKeybind("Toggle UI", "Toggle UI", Enum.KeyCode.F, function()
+	qe:ToggleUI()
+end)
+
+s1:NewButton("Free Fireball", "ButtonInfo", function()
     for i,v in pairs (game.Players:GetChildren()) do
     wait()
     for i,b in pairs (v.Backpack:GetChildren()) do
@@ -18,12 +23,15 @@ Section:NewButton("Free Fireball", "ButtonInfo", function()
     end
     end
 end)
-Section:NewButton("Autofarm Coin", "ButtonInfo", function()
-    while wait() do -- бесконечный цикл 
+
+s1:NewToggle("AutofarmCoin", "Autofarm Coins", function(state)
+    autofarm = state
+while wait(0.1) and autofarm do
     game:GetService("ReplicatedStorage").Events.CoinEvent:FireServer()
-    end
+end
 end)
-Section:NewTextBox("AnyPackName", "TextboxInfo", function(packname)
+
+s1:NewTextBox("AnyPackName", "TextboxInfo", function(packname)
 	local args = {
     [1] = packname
 }
@@ -31,12 +39,12 @@ Section:NewTextBox("AnyPackName", "TextboxInfo", function(packname)
 game:GetService("ReplicatedStorage").acceptedEvent:FireServer(unpack(args))
 
 end)
-Section:NewTextBox("Radio Music", "TextboxInfo", function(radioid)
+s1:NewTextBox("Radio Music", "TextboxInfo", function(radioid)
 	local anrad = radioid --id here
 local Event = game:GetService("Workspace")["DRadio_Script"].Event
 Event:FireServer(anrad)
 end)
-Section2:NewDropdown("Tp to some place", "DropdownInf", {"Spawn", "Lion Base up", "Lion Base", "Barn", "Wooden Village", "Wooden Village2", "Skull", "5k+DummyFarm"}, function(placetp)
+s2:NewDropdown("Tp to some place", "DropdownInf", {"Spawn", "Lion Base up", "Lion Base", "Barn", "Wooden Village", "Wooden Village2", "Skull", "5k+DummyFarm"}, function(placetp)
     if placetp == "Spawn" then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").SpawnPoints.spawnPoint.CFrame
     elseif placetp == "Lion Base" then
@@ -55,21 +63,36 @@ Section2:NewDropdown("Tp to some place", "DropdownInf", {"Spawn", "Lion Base up"
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1070.18616, -150.246094, -11.5510368, -0.998719573, -9.45147534e-08, -0.0505883619, -9.2055771e-08, 1, -5.09376186e-08, 0.0505883619, -4.62154475e-08, -0.998719573)
 	end
 end)
-Section5:NewLabel("FPS Cap Default: 60")
-Section5:NewTextBox("FPS Cap", "SliderInfo", function(fpscap)
+s5:NewLabel("FPS Cap Default: 60")
+s5:NewTextBox("FPS Cap", "SliderInfo", function(fpscap)
     setfpscap(fpscap)
 end)
-Section5:NewButton("DragChat", "ButtonInfo", function()
+s5:NewButton("DragChat", "ButtonInfo", function()
     loadstring(game:HttpGet(('https://pastebin.com/raw/svqRbx2n'),true))()
 end)
-Section6:NewTextBox("SpeedHack", "SliderInfo", function(wshack)
+s6:NewTextBox("SpeedHack", "SliderInfo", function(wshack)
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = wshack
 end)
-Section6:NewTextBox("JumpHack", "SliderInfo", function(jphack)
+s6:NewTextBox("JumpHack", "SliderInfo", function(jphack)
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = jphack
 end)
-Section5:NewButton("AntiAFK", "ButtonInfo", function()
+s5:NewButton("AntiAFK", "ButtonInfo", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/2dgeneralspam1/scripts-and-stuff/master/scripts/LoadstringypVvhJBq4QNz", true))()
 end)
-Section6:NewLabel("SpeedHack Default: 16")
-Section6:NewLabel("JumpPower Default: 50")
+s6:NewLabel("SpeedHack Default: 16")
+s6:NewLabel("JumpPower Default: 50")
+s1:NewButton("Become Small", "Desc", function()
+        local LPl = game.Players.LocalPlayer.Character.HumanoidRootPart
+    local LPlPos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+    local BuildPart = Instance.new("Part",game.Workspace) --Directory of The Part
+    BuildPart.Size = Vector3.new(1,1,1) 	              --The Size of the Part
+    BuildPart.Position = LPl.Position --The Position of The Part
+    BuildPart.Anchored = true
+    wait(0.1)
+    LPl.CFrame = game:GetService("Workspace").MagicPart.CFrame
+    wait(0.2)
+    LPl.CFrame = game:GetService("Workspace").Part.CFrame
+    wait(0.1)
+    game:GetService("Workspace").Part:Destroy()
+end)
+
