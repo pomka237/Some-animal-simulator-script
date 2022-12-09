@@ -1,5 +1,5 @@
-local qe = loadstring(game:HttpGet("https://raw.githubusercontent.com/Robojini/Tuturial_UI_Library/main/UI_Template_1"))()
-local Window = qe.CreateLib("Animal Simulator script v Beta", "RJTheme1")
+local qe = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = qe.CreateLib("Animal Simulator script v Beta", "BloodTheme")
 local w1 = Window:NewTab("Main")
 local w2 = Window:NewTab("Local Player")
 local w3 = Window:NewTab("Misc")
@@ -24,11 +24,46 @@ s1:NewButton("Free Fireball", "ButtonInfo", function()
     end
 end)
 
-s1:NewToggle("AutofarmCoin", "Autofarm Coins", function(state)
-    autofarm = state
-while wait(0.1) and autofarm do
+s1:NewToggle("AutofarmCoin", "Autofarm Coins", function(FarmCoins)
+    autofarmcoins = FarmCoins
+while wait(0.1) and autofarmcoins do
     game:GetService("ReplicatedStorage").Events.CoinEvent:FireServer()
 end
+end)
+
+s1:NewToggle("Autofarm Dummy (Stay near dummy)", "Autopunch Dummy, need to stay near", function(FarmDummy)
+    autofarmdummy = FarmDummy
+    while wait(0.5) and autofarmdummy do
+        
+    end
+end)
+
+s1:NewToggle("Killaura", "Killaura", function(KAura)
+    KAura_ = KAura
+    while wait(0.1) and KAura_ do
+        KALPlr = game.Players.LocalPlayer
+for _,player in pairs(game.Players:GetPlayers()) do
+    if player ~= KALPlr then
+        if player.Character and player.Character:FindFirstChild('HumanoidRootPart') then
+            if (player.Character.HumanoidRootPart.Position - KALPlr.Character.HumanoidRootPart.Position).Magnitude < 20 then
+                target = player
+            end
+        end
+    end
+end
+
+if target then
+    local args = {
+    [1] = target.Character.Humanoid,
+    [2] = 2
+}
+
+game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
+
+else
+    print('no target found :(')
+end
+    end
 end)
 
 s1:NewTextBox("AnyPackName", "TextboxInfo", function(packname)
