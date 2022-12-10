@@ -10,10 +10,10 @@
         },
             Discord = {
                 Enabled = false,
-                Invite = "", -- The Discord invite code, do not include discord.gg/
+                Invite = "sirius", -- The Discord invite code, do not include discord.gg/
                 RememberJoins = true -- Set this to false to make them join the discord every time they load it up
             },
-        KeySystem = false, -- Set this to true to use our key system
+        KeySystem = true, -- Set this to true to use our key system
         KeySettings = {
             Title = "Sirius Hub",
             Subtitle = "Key System",
@@ -28,44 +28,45 @@
     local wlpl = ww:CreateTab("Local Player", 4483362458) -- Title, Image
     local wMisc = ww:CreateTab("Misc", 4483362458) -- Title, Image
     local wCredits = ww:CreateTab("Credits", 4483362458) -- Title, Image
+    local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
 
     wMain:CreateDropdown({
         Name = "TP to some places",
         Options = {"Spawn", "Lion Base up", "Lion Base", "Barn", "Wooden Village", "Wooden Village2", "Skull", "5k+DummyFarm"},
         CurrentOption = "none",
-        Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Flag = "Dropdown1", 
         Callback = function(placetp)
             if placetp == "Spawn" then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").SpawnPoints.spawnPoint.CFrame
+            hrp.CFrame = game:GetService("Workspace").SpawnPoints.spawnPoint.CFrame
         elseif placetp == "Lion Base" then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(413.225586, -46.5574036, 342.786346, -0.345967054, -5.71568002e-08, -0.938246667, -8.65834551e-08, 1, -2.89921385e-08, 0.938246667, 7.12063155e-08, -0.345967054)
+            hrp.CFrame = CFrame.new(413.225586, -46.5574036, 342.786346, -0.345967054, -5.71568002e-08, -0.938246667, -8.65834551e-08, 1, -2.89921385e-08, 0.938246667, 7.12063155e-08, -0.345967054)
         elseif placetp == "Lion Base up" then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(400.891174, 85.5729599, 338.229431, -0.151408985, -4.81678413e-08, -0.98847121, 1.59717892e-08, 1, -5.11761158e-08, 0.98847121, -2.35361775e-08, -0.151408985)
+            hrp.CFrame = CFrame.new(400.891174, 85.5729599, 338.229431, -0.151408985, -4.81678413e-08, -0.98847121, 1.59717892e-08, 1, -5.11761158e-08, 0.98847121, -2.35361775e-08, -0.151408985)
         elseif placetp == "Barn" then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-111.422882, -90.7581482, -34.2572899, 0.128153786, 7.40475192e-09, 0.991754293, -1.07792175e-08, 1, -6.07343376e-09, -0.991754293, -9.91200189e-09, 0.128153786)
+            hrp.CFrame = CFrame.new(-111.422882, -90.7581482, -34.2572899, 0.128153786, 7.40475192e-09, 0.991754293, -1.07792175e-08, 1, -6.07343376e-09, -0.991754293, -9.91200189e-09, 0.128153786)
         elseif placetp == "Wooden Village" then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1306.79773, -70.4225464, 13.2711592, 0.210619032, 1.07564716e-07, -0.977568209, 1.38653533e-08, 1, 1.13020263e-07, 0.977568209, -3.735855e-08, 0.210619032)
+            hrp.CFrame = CFrame.new(1306.79773, -70.4225464, 13.2711592, 0.210619032, 1.07564716e-07, -0.977568209, 1.38653533e-08, 1, 1.13020263e-07, 0.977568209, -3.735855e-08, 0.210619032)
         elseif placetp == "Wooden Village2" then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1203.63354, -90.3156509, 953.048157, 0.126293376, -1.29047772e-10, -0.99199295, 2.62288893e-08, 1, 3.20918336e-09, 0.99199295, -2.64241713e-08, 0.126293376)
+            hrp.CFrame = CFrame.new(1203.63354, -90.3156509, 953.048157, 0.126293376, -1.29047772e-10, -0.99199295, 2.62288893e-08, 1, 3.20918336e-09, 0.99199295, -2.64241713e-08, 0.126293376)
         elseif placetp == "Skull" then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-448.156677, -45.9675636, 1228.43848, 0.346850455, -9.98767788e-08, -0.937920451, 5.4451359e-09, 1, -1.0447382e-07, 0.937920451, 3.11296873e-08, 0.346850455)
+            hrp.CFrame = CFrame.new(-448.156677, -45.9675636, 1228.43848, 0.346850455, -9.98767788e-08, -0.937920451, 5.4451359e-09, 1, -1.0447382e-07, 0.937920451, 3.11296873e-08, 0.346850455)
         elseif placetp == "5k+DummyFarm" then
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1070.18616, -150.246094, -11.5510368, -0.998719573, -9.45147534e-08, -0.0505883619, -9.2055771e-08, 1, -5.09376186e-08, 0.0505883619, -4.62154475e-08, -0.998719573)
+        hrp.CFrame = CFrame.new(1070.18616, -150.246094, -11.5510368, -0.998719573, -9.45147534e-08, -0.0505883619, -9.2055771e-08, 1, -5.09376186e-08, 0.0505883619, -4.62154475e-08, -0.998719573)
         end
         end,
     })
     playersList = {}
     for i, plrt in pairs(game.Players:GetPlayers()) do
-        table.insert(playersList, plrt.Name)
+        table.insert(playersList, plrt.DisplayName..plrt.Name)
     end
 
     wMain:CreateDropdown({
         Name = "Tp to player",
         Options = playersList,
         CurrentOption = "nobody",
-        Flag = "Dropdown2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Flag = "Dropdown2", 
         Callback = function(playertp)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[playertp].Character.HumanoidRootPart.CFrame
+            hrp.CFrame = game.Players[playertp].Character.HumanoidRootPart.CFrame
         end,
     })
 
@@ -84,7 +85,7 @@
     wMain:CreateToggle({
         Name = "Autofarm Coin",
         CurrentValue = false,
-        Flag = "AutofarmCoins", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Flag = "AutofarmCoins", 
         Callback = function(AFarmCoin)
             autofarmcoins = AFarmCoin
     while wait(0.1) and autofarmcoins do
@@ -94,9 +95,28 @@
     })
 
     wMain:CreateToggle({
+        Name = "Autofarm Dummy",
+        CurrentValue = false,
+        Flag = "Toggle1", 
+        Callback = function(AFarmDummy)
+            autofarmdummy = AFarmDummy
+            while wait(0.1) and autofarmdummy do
+                hrp.CFrame = game:GetService("Workspace").MAP.dummies["Training Dummy"].HumanoidRootPart.CFrame
+
+                local args = {
+                    [1] = workspace.MAP.dummies:FindFirstChild("Training Dummy").Humanoid,
+                    [2] = 1
+                }
+                
+                game:GetService("ReplicatedStorage").jdskhfsIIIllliiIIIdchgdIiIIIlIlIli:FireServer(unpack(args))
+            end
+        end,
+    })
+
+    wMain:CreateToggle({
         Name = "Killaura",
         CurrentValue = false,
-        Flag = "Killaura", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+        Flag = "Killaura", 
         Callback = function(KAura)
             KAura_ = KAura
         while wait(0.1) and KAura_ do
