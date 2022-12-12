@@ -45,6 +45,13 @@ MainS1:addKeybind({
     end
 })
 
+MainS1:addButton({
+    title = "Destroy GUI",
+    callback = function()
+        game.CoreGui["TS HUB | Animal Simulator"]:Destroy()
+    end
+})
+
 MainS1:addDropdown({
     title = "Tp to place",
     default = "Choose place",
@@ -72,15 +79,26 @@ MainS1:addDropdown({
 
 playersList = {}
 for i, plrt in pairs(game.Players:GetPlayers()) do
-    table.insert(playersList, plrt.Name)
+    table.insert(playersList, plrt)
 end
 
-MainS1:addDropdown({
+tptoplayerdd = MainS1:addDropdown({
     title = "Tp to player",
     list = playersList,
     default = "Choose player", 
     callback = function(playertp)
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[playertp].Character.HumanoidRootPart.CFrame
+    end
+})
+
+MainS1:addButton({
+    title = "Refresh Player List ^",
+    callback = function()
+        playerList = {}
+        for i, plrt in pairs(game.Players:GetPlayers()) do
+            table.insert(playerList, plrt)
+        end
+        tptoplayerdd.Options:Update({list = playerList})
     end
 })
 
@@ -101,7 +119,7 @@ MainS1:addToggle({
     toggled = false,
     callback = function(AFarmCoin)
         autofarmcoins = AFarmCoin
-        while wait(0.1) and autofarmcoins do
+        while wait(1.2) and autofarmcoins do
             game:GetService("ReplicatedStorage").Events.CoinEvent:FireServer()
         end
     end
@@ -149,7 +167,7 @@ MainS1:addToggle({
     toggled = false,
     callback = function(KAura)
         KAura_ = KAura
-        while wait(0.1) and KAura_ do
+        while wait(0.5) and KAura_ do
             KALPlr = game.Players.LocalPlayer
             for _,player in pairs(game.Players:GetPlayers()) do
                 if player ~= KALPlr then
