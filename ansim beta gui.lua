@@ -79,7 +79,7 @@ MainS1:addDropdown({
 
 playersList = {}
 for i, plrt in pairs(game.Players:GetPlayers()) do
-    table.insert(playersList, plrt)
+    table.insert(playersList, plrt.DisplayName.." ("..plrt.Name..")")
 end
 
 tptoplayerdd = MainS1:addDropdown({
@@ -167,7 +167,7 @@ MainS1:addToggle({
     toggled = false,
     callback = function(KAura)
         KAura_ = KAura
-        while wait(0.5) and KAura_ do
+        while wait(0.65) and KAura_ do
             KALPlr = game.Players.LocalPlayer
             for _,player in pairs(game.Players:GetPlayers()) do
                 if player ~= KALPlr then
