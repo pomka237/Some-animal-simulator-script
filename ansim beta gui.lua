@@ -79,7 +79,7 @@ MainS1:addDropdown({
 
 playersList = {}
 for i, plrt in pairs(game.Players:GetPlayers()) do
-    table.insert(playersList, plrt.DisplayName.." ("..plrt.Name..")")
+    table.insert(playersList, plrt)
 end
 
 tptoplayerdd = MainS1:addDropdown({
