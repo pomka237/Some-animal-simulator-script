@@ -102,6 +102,25 @@ MainS1:addButton({
     end
 })
 
+MainS1:addToggle({
+    title = 'Players ESP',
+    callback = function(playeresp)
+        playeresp_ = playeresp
+        while wait(0.5) and playeresp_ do
+            for i, plesp in pairs(game.Players:GetPlayers()) do
+                esp = Instance.new("BoxHandleAdornment", plesp)
+                esp.Adornee = plesp
+                esp.ZIndex = 0
+                esp.Size = Vector3.new(0.5, 5, 0.5)
+                esp.Transparency = 0.55
+                esp.Color3 = Color3.fromRGB(255,255,255)
+                esp.AlwaysOnTop = true
+                esp.Name = "ESP Box"
+            end
+        end
+    end
+})
+
 MainS1:addButton({
     title = "Free Fireball",
     callback = function()
@@ -161,6 +180,22 @@ MainS1:addToggle({
         end
 	end
 })
+
+MainS1:addKeybind({
+    title = 'Set HP Lava Monster to 0',
+    key = Enum.KeyCode.Unknown,
+    callback = function()
+        game:GetService("Workspace").NPC.LavaGorilla.Humanoid.Health = 0
+    end
+})
+
+MainS1:addButton({
+    title = 'Set HP Lava Monster yo 0',
+    callback = function()
+        game:GetService("Workspace").NPC.LavaGorilla.Humanoid.Health = 0
+    end
+})
+
 
 MainS1:addToggle({
     title = "Killaura",
