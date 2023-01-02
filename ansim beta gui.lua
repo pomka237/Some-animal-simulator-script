@@ -267,6 +267,13 @@ MainS1:addButton({
     end
 })
 
+MainS1:addButton({
+    title = 'To spawn lava monster',
+    callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-306.442352, -72.6418381, 1279.07617, -0.730675459, 4.92750241e-09, 0.682724953, 1.46887003e-09, 1, -5.64537039e-09, -0.682724953, -3.12209947e-09, -0.730675459)
+    end
+})
+
 MainS1:addToggle({
     title = "Killaura",
     toggled = false,
