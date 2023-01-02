@@ -166,21 +166,45 @@ MainS1:addKeybind({
     title = 'Set HP Lava Monster to 0',
     key = Enum.KeyCode.H,
     callback = function()
-        game:GetService("Workspace").NPC.LavaGorilla.Humanoid.Health = 0
+        for i,gorilla in pairs(game.Workspace.NPC:GetChildren()) do
+            if gorilla.Name == "LavaGorilla" then
+                for i, gorilla2 in pairs(gorilla:GetDescendants()) do
+                    if gorilla2.Name == 'Humanoid' then
+                        gorilla2.Health = 0
+                    end
+                end
+            end
+        end
     end
 })
 
 MainS1:addButton({
     title = 'Set HP Lava Monster to 0',
     callback = function()
-        game:GetService("Workspace").NPC.LavaGorilla.Humanoid.Health = 0
+        for i,gorilla in pairs(game.Workspace.NPC:GetChildren()) do
+            if gorilla.Name == "LavaGorilla" then
+                for i, gorilla2 in pairs(gorilla:GetDescendants()) do
+                    if gorilla2.Name == 'Humanoid' then
+                        gorilla2.Health = 0
+                    end
+                end
+            end
+        end
     end
 })
 
 MainS1:addButton({
     title = 'Bring lava monster to you',
     callback = function()
-        game:GetService("Workspace").NPC.LavaGorilla.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,50,0)
+        for i,gorilla in pairs(game.Workspace.NPC:GetChildren()) do
+            if gorilla.Name == "LavaGorilla" then
+                for i, gorilla2 in pairs(gorilla:GetDescendants()) do
+                    if gorilla2.Name == 'HumanoidRootPart' then
+                        gorilla2.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                    end
+                end
+            end
+        end
     end
 })
 
@@ -194,7 +218,15 @@ bringbossfun = MainS1:addDropdown({
     list = bringbosslist,
     default = 'Choose player',
     callback = function(bringboss)
-        game:GetService("Workspace").NPC.LavaGorilla.HumanoidRootPart.CFrame = game.Players[bringboss].Character.HumanoidRootPart.CFrame + Vector3.new(0,50,0)
+        for i,gorilla in pairs(game.Workspace.NPC:GetChildren()) do
+            if gorilla.Name == "LavaGorilla" then
+                for i, gorilla2 in pairs(gorilla:GetDescendants()) do
+                    if gorilla2.Name == 'HumanoidRootPart' then
+                        gorilla2.CFrame = game.Players[bringboss].Character.HumanoidRootPart.CFrame
+                    end
+                end
+            end
+        end
     end
 })
 
@@ -213,7 +245,15 @@ MainS1:addButton({
 MainS1:addButton({
     title = 'Tp to lava monster',
     callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.NPC.LavaGorilla.HumanoidRootPart.CFrame
+        for i,gorilla in pairs(game.Workspace.NPC:GetChildren()) do
+            if gorilla.Name == "LavaGorilla" then
+                for i, gorilla2 in pairs(gorilla:GetDescendants()) do
+                    if gorilla2.Name == 'HumanoidRootPart' then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = gorilla2.CFrame
+                    end
+                end
+            end
+        end
     end
 })
 
