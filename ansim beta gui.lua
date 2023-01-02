@@ -193,6 +193,16 @@ MainS1:addButton({
     end
 })
 
+MainS1:addSlider({
+    title = 'High of tp position lava monster',
+    min = 10,
+    max = 100,
+    default = 50,
+    callback = function(high)
+        high_ = high
+    end
+})
+
 MainS1:addButton({
     title = 'Bring lava monster to you',
     callback = function()
@@ -200,7 +210,7 @@ MainS1:addButton({
             if gorilla.Name == "LavaGorilla" then
                 for i, gorilla2 in pairs(gorilla:GetDescendants()) do
                     if gorilla2.Name == 'HumanoidRootPart' then
-                        gorilla2.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                        gorilla2.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,high_,0)
                     end
                 end
             end
@@ -222,7 +232,7 @@ bringbossfun = MainS1:addDropdown({
             if gorilla.Name == "LavaGorilla" then
                 for i, gorilla2 in pairs(gorilla:GetDescendants()) do
                     if gorilla2.Name == 'HumanoidRootPart' then
-                        gorilla2.CFrame = game.Players[bringboss].Character.HumanoidRootPart.CFrame
+                        gorilla2.CFrame = game.Players[bringboss].Character.HumanoidRootPart.CFrame + Vector3.new(0,high_,0)
                     end
                 end
             end
@@ -256,7 +266,6 @@ MainS1:addButton({
         end
     end
 })
-
 
 MainS1:addToggle({
     title = "Killaura",
