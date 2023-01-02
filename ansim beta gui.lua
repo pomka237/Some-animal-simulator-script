@@ -102,25 +102,6 @@ MainS1:addButton({
     end
 })
 
-MainS1:addToggle({
-    title = 'Players ESP',
-    callback = function(playeresp)
-        playeresp_ = playeresp
-        while wait(0.5) and playeresp_ do
-            for i, plesp in pairs(game.Players:GetPlayers()) do
-                esp = Instance.new("BoxHandleAdornment", plesp)
-                esp.Adornee = plesp
-                esp.ZIndex = 0
-                esp.Size = Vector3.new(0.5, 5, 0.5)
-                esp.Transparency = 0.55
-                esp.Color3 = Color3.fromRGB(255,255,255)
-                esp.AlwaysOnTop = true
-                esp.Name = "ESP Box"
-            end
-        end
-    end
-})
-
 MainS1:addButton({
     title = "Free Fireball",
     callback = function()
@@ -138,7 +119,7 @@ MainS1:addToggle({
     toggled = false,
     callback = function(AFarmCoin)
         autofarmcoins = AFarmCoin
-        while wait(1.2) and autofarmcoins do
+        while wait(0.5) and autofarmcoins do
             game:GetService("ReplicatedStorage").Events.CoinEvent:FireServer()
         end
     end
@@ -183,16 +164,56 @@ MainS1:addToggle({
 
 MainS1:addKeybind({
     title = 'Set HP Lava Monster to 0',
-    key = Enum.KeyCode.Unknown,
+    key = Enum.KeyCode.H,
     callback = function()
         game:GetService("Workspace").NPC.LavaGorilla.Humanoid.Health = 0
     end
 })
 
 MainS1:addButton({
-    title = 'Set HP Lava Monster yo 0',
+    title = 'Set HP Lava Monster to 0',
     callback = function()
         game:GetService("Workspace").NPC.LavaGorilla.Humanoid.Health = 0
+    end
+})
+
+MainS1:addButton({
+    title = 'Bring lava monster to you',
+    callback = function()
+        game:GetService("Workspace").NPC.LavaGorilla.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0,50,0)
+    end
+})
+
+bringbosslist = {}
+for i, plrt in pairs(game.Players:GetPlayers()) do
+    table.insert(bringbosslist, plrt)
+end
+
+bringbossfun = MainS1:addDropdown({
+    title = 'Bring lava monster to player',
+    list = bringbosslist,
+    default = 'Choose player',
+    callback = function(bringboss)
+        game:GetService("Workspace").NPC.LavaGorilla.HumanoidRootPart.CFrame = game.Players[bringboss].Character.HumanoidRootPart.CFrame + Vector3.new(0,50,0)
+    end
+})
+
+
+MainS1:addButton({
+    title = "Refresh Player List ^",
+    callback = function()
+        bringbosslist = {}
+        for i, plrt in pairs(game.Players:GetPlayers()) do
+            table.insert(bringbosslist, plrt)
+        end
+        bringbossfun.Options:Update({list = bringbosslist})
+    end
+})
+
+MainS1:addButton({
+    title = 'Tp to lava monster',
+    callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.NPC.LavaGorilla.HumanoidRootPart.CFrame
     end
 })
 
