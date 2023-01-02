@@ -280,11 +280,10 @@ MainS1:addToggle({
     callback = function(KAura)
         KAura_ = KAura
         while wait(0.4) and KAura_ do
-            KALPlr = game.Players.LocalPlayer
             for _,player in pairs(game.Players:GetPlayers()) do
-                if player ~= KALPlr then
+                if player ~= game.Players.LocalPlayer then
                     if player.Character and player.Character:FindFirstChild('HumanoidRootPart') then
-                        if (player.Character.HumanoidRootPart.Position - KALPlr.Character.HumanoidRootPart.Position).Magnitude < 20 then
+                        if (player.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < 20 then
                             target = player
                         end
                     end
@@ -310,13 +309,42 @@ MainS1:addTextbox({
     title = "Any Pack Name",
     default = "Any pack name",
     callback = function(packname)
-
         local args = {
-    [1] = packname
-}
+            [1] = packname
+        }
 
-game:GetService("ReplicatedStorage").acceptedEvent:FireServer(unpack(args))
+        game:GetService("ReplicatedStorage").acceptedEvent:FireServer(unpack(args))
+    end
+})
 
+packst = {}
+for i,packs in pairs(game:GetService("Workspace").Teams:GetChildren()) do
+    table.insert(packst, packs.Name)
+end
+
+joinpackfun = MainS1:addDropdown({
+    title = 'Join pack',
+    list = packst,
+    default = 'Choose pack',
+    callback = function(jpack)
+        local args = {
+            [1] = jpack
+        }
+
+        game:GetService("ReplicatedStorage").acceptedEvent:FireServer(unpack(args))
+    end
+})
+
+MainS1:addButton({
+    title = 'Update pack list',
+    callback = function()
+        packst = {}
+        for i,packs in pairs(game:GetService("Workspace").Teams:GetChildren()) do
+            table.insert(packst, packs)
+        end
+        joinpackfun.Options:Update({
+            list = packst
+        })
     end
 })
 
@@ -333,16 +361,14 @@ Event:FireServer(anrad)
 MainS1:addButton({
     title = "Become small",
     callback = function()
-            local LPl = game.Players.LocalPlayer.Character.HumanoidRootPart
-        local LPlPos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
         local BuildPart = Instance.new("Part",game.Workspace) --Directory of The Part
         BuildPart.Size = Vector3.new(1,1,1) 	              --The Size of the Part
-        BuildPart.Position = LPl.Position --The Position of The Part
+        BuildPart.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position --The Position of The Part
         BuildPart.Anchored = true
         wait(0.1)
-        LPl.CFrame = game:GetService("Workspace").MagicPart.CFrame
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").MagicPart.CFrame
         wait(0.3)
-        LPl.CFrame = game:GetService("Workspace").Part.CFrame
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Part.CFrame
         wait(0.1)
         game:GetService("Workspace").Part:Destroy()
     end
